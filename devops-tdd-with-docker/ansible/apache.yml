@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+  sudo: True
+  tasks:
+    - name: Install Git.
+      command: apt-get install -y apache2 --force-yes
+
+    - shell: apache2 -v
+      register: version
+
+    - debug: msg="{{version.stdout}}"
