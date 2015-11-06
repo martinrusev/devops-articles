@@ -4,6 +4,13 @@ build_ansible_base:
 	rm Dockerfile
 	docker rmi $$(docker images -q --filter dangling=true)
 
+
+build_salt_base:
+	cp saltstack/Dockerfile.base Dockerfile
+	docker build --force-rm=true --rm=true --no-cache --tag="martinrusev/tdd-saltstack" .    
+	rm Dockerfile
+	docker rmi $$(docker images -q --filter dangling=true)
+
 # =====================
 # Test
 # =====================
