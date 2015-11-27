@@ -21,5 +21,15 @@ test_ansible:
 	docker rmi $$(docker images -q --filter dangling=true)
 
 
+test_salt: 
+	cp saltstack/Dockerfile Dockerfile
+	cp saltstack/states/vim.sls vim.sls
+	cp saltstack/minion.yml minion.yml
+	docker build --force-rm=true --rm=true --no-cache .  
+	rm Dockerfile
+	rm vim.sls
+	docker rmi $$(docker images -q --filter dangling=true)
+
+
 clean:
 	docker rmi $$(docker images -q --filter dangling=true)
