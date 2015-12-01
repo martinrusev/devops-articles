@@ -28,6 +28,7 @@ test_salt:
 	docker build --force-rm=true --rm=true --no-cache .  
 	rm Dockerfile
 	rm vim.sls
+	rm minion.yml
 	docker rmi $$(docker images -q --filter dangling=true)
 
 
