@@ -1,3 +1,0 @@
-file_client: local
-base:
-  - /srv/salt

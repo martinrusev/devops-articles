@@ -1,0 +1,15 @@
+FROM ubuntu:latest
+RUN apt-get update
+RUN apt-get install -y software-properties-common
+RUN apt-add-repository ppa:ansible/ansible
+RUN apt-get update
+
+RUN apt-get install -y ansible ruby ruby-dev
+
+RUN gem install bundle --no-ri --no-rdoc
+
+COPY Gemfile Gemfile
+RUN bundle install
+
+
+

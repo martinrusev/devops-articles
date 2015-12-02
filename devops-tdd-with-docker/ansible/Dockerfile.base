@@ -1,9 +1,0 @@
-FROM williamyeh/ansible:ubuntu14.04
-
-RUN apt-get update
-RUN apt-get install -y --force-yes ruby ruby-dev
-
-RUN gem install bundle --no-ri --no-rdoc
-
-COPY Gemfile Gemfile
-RUN bundle install
