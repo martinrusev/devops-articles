@@ -1,3 +1,6 @@
+BASE_PATH=~/devops-articles/tdd-caps-with-docker
+
+
 build_chef_base:
 	cp chef/Dockerfile.base Dockerfile
 	docker build --force-rm=true --rm=true --no-cache --tag="martinrusev/tdd-chef" .    
@@ -30,10 +33,10 @@ build_puppet_base:
 # =====================
 test_chef: 
 	cp chef/Dockerfile Dockerfile
-	cp chef/cookbooks cookbooks
+	cp -r chef/cookbooks $(BASE_PATH)/cookbooks
 	docker build --force-rm=true --rm=true --no-cache .  
 	rm Dockerfile
-	rm -rf cookbooks
+	rm -rf $(BASE_PATH)/cookbooks
 	docker rmi $$(docker images -q --filter dangling=true)
 
 

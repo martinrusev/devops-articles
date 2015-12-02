@@ -17,5 +17,3 @@ RUN puppet apply apache.pp
 # run test suite
 RUN bundle exec rake spec
 RUN goss -g goss.json validate
-
-RUN ls -lh /tmp
