@@ -4,12 +4,9 @@ RUN apt-get install -y software-properties-common
 RUN apt-add-repository ppa:ansible/ansible
 RUN apt-get update
 
-RUN apt-get install -y ansible ruby ruby-dev
-
+RUN apt-get install -y ansible ruby ruby-dev wget
+RUN wget -L https://github.com/aelsabbahy/goss/releases/download/v0.0.16/goss-linux-amd64 > /usr/local/bin/goss && chmod +x /usr/local/bin/goss
 RUN gem install bundle --no-ri --no-rdoc
 
 COPY Gemfile Gemfile
 RUN bundle install
-
-
-
