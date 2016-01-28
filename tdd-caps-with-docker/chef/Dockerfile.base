@@ -1,0 +1,10 @@
+FROM ubuntu:latest
+
+RUN apt-get update
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository ppa:saltstack/salt
+RUN apt-get install -y --force-yes wget
+
+RUN wget https://opscode-omnibus-packages.s3.amazonaws.com/ubuntu/10.04/x86_64/chef_12.5.1-1_amd64.deb
+RUN dpkg -i chef_12.5.1-1_amd64.deb
+

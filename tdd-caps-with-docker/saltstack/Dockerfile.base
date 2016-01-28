@@ -1,0 +1,15 @@
+FROM ubuntu:latest
+
+RUN apt-get update
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository ppa:saltstack/salt
+RUN apt-get install -y --force-yes ruby ruby-dev salt-minion wget
+
+RUN gem install bundle --no-ri --no-rdoc
+RUN wget -L https://github.com/aelsabbahy/goss/releases/download/v0.0.16/goss-linux-amd64 > /usr/local/bin/goss && chmod +x /usr/local/bin/goss
+
+COPY Gemfile Gemfile
+RUN bundle install
+
+RUN mkdir -p /srv/salt
+ADD minion.yml /etc/salt/minion

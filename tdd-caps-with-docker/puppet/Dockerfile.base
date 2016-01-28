@@ -1,0 +1,18 @@
+FROM ubuntu:latest
+
+RUN apt-get update
+RUN apt-get install -y wget ruby ruby-dev
+RUN wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
+RUN dpkg -i puppetlabs-release-trusty.deb
+RUN apt-get update
+RUN apt-get install -y puppet 
+
+
+RUN gem install bundle --no-ri --no-rdoc
+RUN wget -L https://github.com/aelsabbahy/goss/releases/download/v0.0.16/goss-linux-amd64 > /usr/local/bin/goss && chmod +x /usr/local/bin/goss
+
+COPY Gemfile Gemfile
+RUN bundle install
+
+
+RUN puppet module install puppetlabs-apache
